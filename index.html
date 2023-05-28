@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          
+          body {
+            background: url(https://danielkordan.com/wp-content/uploads/2015/08/DSC_4062-Panoramajj2.jpg);
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover
+          }
+          .title {
+            color: #faf0f0;
+            font-size: 1.5rem;
+            text-align: center;
+          }
+          .temp_conv {
+            background: transparent;
+            backdrop-filter: blur(30px);
+            border-radius: 5px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px 25px 20px;
+            min-width: 320px;
+            width: 100%;
+            height: auto;
+          }
+          .result {
+            text-align: center;
+            margin: 20px 0;
+          }
+          .result-heading {
+            color: #fff9f9;
+            font-size: 1rem;
+            font-weight: 600;
+          }
+          .celsius-value {
+            border-bottom: 2px solid #fff9f9 ;
+            padding: 10px;
+          }
+          label {
+            color: hwb(0 71% 25%);
+            font-size: 1rem;
+            margin-bottom: 5px;
+          }
+          input,
+          select {
+            background: transparent;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #e8dede;
+            padding: 8px;
+            margin-bottom: 15px;
+          }
+          input:focus {
+            border: 1px solid #4c49f3;
+          }
+          .degree_conv {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+          }
+          .degree_input {
+            display: flex;
+            flex-direction: column;
+            width: 46%;
+          }
+          option {
+            background-color: #918c8c;
+            color: #efe6e6;
+          }
+          #convert {
+            background: linear-gradient(to bottom, #ec42a8, #d90cf0);
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: #e6dce6;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            padding: 12px 80px;
+            transition: all 0.3s ease-in;
+          }
+          #convert:hover {
+            background: linear-gradient(to bottom, #317ae8, #4c13db);
+          }
+        </style>
+          </head>
+        <title>TEMPERATURE CONVERTER</title>
+    </head>
+    <body>
+        <div class="box">
+            <div class="temp_conv">
+                <h1 class="title"> Temperature Converter</h1>
+                <div class="degree_conv">
+                    <div class="degree_input">
+                        <label for="degree">Degrees</label>
+                        <input type="number" name="degree" id="degree">
+                    </div>
+                    <div class="degrees_type">
+                        <label for="temp_type">Type</label>
+                        <select name="temperatures" id="temp_type" autocomplete="on">
+                            <option id="fahrenheit" value="fahrenheit">Fahrenheit</option>
+                            <option id="kelvin" value="kelvin">Kelvin</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="result">
+                    <span class="result-heading">Result (in Celsius)</span>
+                    <h2 class="celsius-value" id="celsius"></h2>
+                  </div>
+                  <button id="convert">Convert</button>
+            </div>
+        </div>
+        <script>
+            const celsiusElem = document.querySelector("#celsius");
+const degree = document.querySelector("#degree");
+const convertBtn = document.querySelector("#convert");
+const tempType = document.querySelector("#temp_type");
+
+window.addEventListener("load", () => {
+  degree.value = "";
+  celsiusElem.innerHTML = "";
+});
+
+convert.addEventListener("click", (e) => {
+  e.preventDefault();
+  convertToCelsius();
+});
+
+function convertToCelsius() {
+  let inputValue = degree.value;
+
+if (tempType.value === "fahrenheit") {
+    const FahrenheitToCelsius = ((inputValue -32)/1.8);
+    celsiusElem.innerHTML = `${FahrenheitToCelsius.toFixed(3)} &deg;c`;
+  } else if (tempType.value === "kelvin") {
+    const KelvinToCelsius = (inputValue - 273.15);
+    celsiusElem.innerHTML = `${KelvinToCelsius.toFixed(3)} &deg;c`;
+  }
+}
+        </script>
+    </body>
+</html>
